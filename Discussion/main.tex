@@ -1,58 +1,172 @@
-\documentclass[a4paper, 11pt]{article}
-\usepackage{graphicx} % Required for inserting images
+\documentclass[a4paper,10pt]{article}
+\usepackage[left=2cm, right =2cm, top=2cm, bottom=3cm]{geometry}
+% Useful packages
 \usepackage{amsmath,physics, amssymb}
 \usepackage{graphicx}
-\usepackage{amsmath}
-\usepackage{authblk}
-\usepackage{xcolor}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{color}
 \newcommand{\blue}[1]{\textcolor{blue}{#1}}
 \newcommand{\red}[1]{\textcolor{red}{#1}}
 \usepackage{soul, ulem, todonotes}
-%\setlength{\mathindent}{0pt}
-\usepackage[left=1.5cm, right =1.5cm, top=2cm, bottom=2cm]{geometry}
+%\usepackage{mathptmx}
 
 \usepackage[capitalise]{cleveref}
 %\usepackage[backend=bibtex, citestyle=numeric-comp, sorting=none, url =false]{biblatex}
 \usepackage[backend=biber, style=numeric]{biblatex}
-\addbibresource[]{main.bib}  
+\addbibresource[]{discussion.bib}  
 % Include bibliography from discussion.bib
 % The bibliography will be printed at the end using \printbibliography{}
+\setcounter{tocdepth}{2}
 
-% San font
-%\usepackage{sansmath}
-%\renewcommand{\familydefault}{\sfdefault}
-%\sansmath
-
-% Title and author
-\title{\bf Impurity induced Discrete Time Crystal in a Flat-band system}
-\author[1]{Mahbub Rahaman\thanks{\texttt{mahbubrahaman@hri.res.in}}}
-\author[1]{Sayan Choudhury \thanks{\texttt{sayanchoudhury@hri.res.in}}}
-\affil[1]{\small Harish-Chandra Research Institute, A CI of Homi Bhabha National Institute, Prayagraj, Uttar Pradesh–211019, India}
-\date{}
-
-
+\title{Discussions: Time crystal in a one-dimensional flat band spin system}
+%\author{MR}
 \begin{document}
-
 \maketitle
-%\tableofcontents
-%\newpage
-\section{Model system}
-We consider a one-dimensional flat-band system with $N$ lattice sites and periodic boundary condition. The Hamiltonian of the system is given by
+\tableofcontents
+\newpage
 
+\section{Introduction of the model}
+\blue{The conventional flat band protocol employs two time-dependent drives, meticulously engineered to suppress the system's dynamics, thereby yielding a flat band and inducing localization. We propose a one-dimensional spin-$1/2$ system comprising $N$ sites, subjected to a dual time-dependent drive protocol, described by
 \begin{align}
-    \hat{\mathcal{H}}_{\text{total}}(t) &= \hat{\mathcal{H}}_{0}(t) + \hat{\mathcal{H}}_{1}(t) + \hat{\mathcal{H}}_{2}(t)\nonumber\\
-    \hat{\mathcal{H}}_{0}(t) &= J(t)\sum_{i=1}^{N}\hat{\sigma}^{z}_{i}\hat{\sigma}^{z}_{i+1} = J \operatorname{sgn}{\cos(\omega t)}\sum_{i=1}^{N}\hat{\sigma}^{z}_{i}\hat{\sigma}^{z}_{i+1} &;{0<t\le T}\nonumber\\
-    \hat{\mathcal{H}}_{1}(t) &= g(t)\sum_i \hat{\sigma}^x_i = g \operatorname{sgn}{\cos(2\omega t)}\sum_i \hat{\sigma}^x_i &;{0<t\le T}\nonumber\\
-    \hat{\mathcal{H}}_{2}(t) &= 0 &; {0<t\le \frac{T}{2}}\nonumber\\
-    \hat{\mathcal{H}}_{2}(t) &= \lambda_s (1-\epsilon)\sum_{i} \hat{\sigma}^{x}_{i}&; {\frac{T}{2}<t\le T}
+    \hat{H}(t) &= \hat{H}_1(t) + \hat{H}_2(t),\\
+    \hat{H}_1(t) &= \lambda_s (1-\epsilon) \hbar \sum_i \hat{\sigma}^x_i, &\quad T_1 = 0<t \le T/2, \\
+            &= 0, &\quad T_2 = T/2<t \le T, \\
+    \hat{H}_2(t) &= 0, &\quad T_1 = 0<t \le T/2, \\
+     &= \hat{H}_{fb}(t), &\quad T_2  = T/2<t \le T.
 \end{align}
-where $\hat{\sigma}^{x,z}_i$ are the Pauli spin matrices at site $i$, $J(t)$ is the time-dependent nearest-neighbor interaction strength, $g(t)$ is the time-dependent transverse field strength, $\lambda_s$ is the impurity strength at a single site, such that $\lambda_s \frac{T}{2} = \frac{\pi}{2}$ and $\epsilon$ is the imperfection in the impurity kick. The system is periodically driven with period $T = 2\pi/\omega$. The first two terms of the Hamiltonian, $\hat{\mathcal{H}}_0$ and $\hat{\mathcal{H}}_1$ together represent a flat-band system. The third term, $\hat{\mathcal{H}}_2$ represents an imperfect kick at a single site of the lattice.
+Here, $\hbar$ denotes Planck's constant, $T_1 = T_2 = T/2$, and $T = 2\pi/\omega$ is the period associated with drive frequency $\omega$. The operators $\hat{\sigma}^{\mu=x,y,z}_i$ represent Pauli matrices at site $i$. We impose $\lambda_s T_1 = \pi/2$ (thus, $\lambda_s = \omega/2$), ensuring that $\hat{H}_1$, containing the $\sum_i \hat{\sigma}^x_i$ term, flips the spins at each site during the $T_1$ interval. Initially, the spin rotational error ($\epsilon$) is set to zero, but is later introduced to assess the model's robustness. The flat band Hamiltonian $\hat{H}_{fb}(t)$ governs the system during the $T_2$ interval and is given by
+\begin{align}
+    \hat{H}_{fb}(t) &= \lambda_1 (t) J \hbar\sum_{i=1}^{N} \hat{\sigma}_i^x \hat{\sigma}_{i+1}^x + \lambda_2 (t) h_z \hbar \sum_i \hat{\sigma}_i^z\\
+     &= \mathrm{sgn}[\cos(n\omega t)] J \hbar\sum_{i=1}^{N} \hat{\sigma}_i^x \hat{\sigma}_{i+1}^x + \mathrm{sgn}[\cos((2n+1)\omega t)] h_z \hbar\sum_i \hat{\sigma}_i^z ,
+\end{align}
+where $n$ is an integer ($n = 1, 2, 3, \dots$), $J$ denotes the nearest-neighbor spin coupling, and $h_z$ is the transverse field amplitude. The time-dependent coefficients $\lambda_1(t)$ and $\lambda_2(t)$ are defined as
+\begin{align}
+    \lambda_1(t) &= \lambda_0 \;\mathrm{sgn}[\cos(n\omega t)],\\
+    \lambda_2(t) &= \omega_0 - \omega_1 \;\mathrm{sgn}[\cos((2n+1)\omega t)].
+\end{align}
+For numerical simulations, we set $n=1$, $\omega_0 = 0$, $\hbar = 1$, $\lambda_1 = 1$, $J = 1$, $h_z = 1$, and $\omega_0 = 0.5$, as depicted in Fig.~\ref{fig:flatband_drive_protocol}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=10cm]{figs/drive_protocol.pdf}
+    \caption{Three time-dependent drives $\lambda_{1,2,s}(t)$ for the proposed model. The first interval, $T_1$, features a spin-flip drive, while the second interval, $T_2$, implements the flat band protocol. We use a primary drive frequency $\omega = 2$, amplitude $\lambda_s = 1$, and flat band drive amplitudes $\lambda_1 = 1$, $\lambda_2 = 0.5$.}
+   \label{fig:flatband_drive_protocol}
+\end{figure}
+These time-dependent functions, with distinct amplitudes and frequencies, are designed to suppress system dynamics, resulting in a flat band. Consequently, during the second interval, the system remains localized in its initial state. Notably, the spin-spin interaction term is absent during the first interval. Upon further evolution, the flipped spins are reversed, breaking time-reversal symmetry and giving rise to a discrete time crystal (DTC) phase.}
+
+\newpage
+\section{Latest findings}
+We have successfully demonstrated the emergence of a discrete time crystal (DTC) phase induced by a flat-band protocol in an interacting spin chain.
+
+\subsection{Rotation error + FB-Symmetry breaking}
+ To further probe the stability of the DTC phase, we introduce a spin rotational error, $\epsilon_r$, into the spin-flip drive protocol. The modified Hamiltonian is
+\begin{align}
+    \hat{H}_1(t) &= \lambda_s (1-\epsilon_r) \hbar \sum_i \hat{\sigma}^x_i, &\quad T_1 = 0<t \le T/2, \\
+            &= 0, &\quad T_2 = T/2<t \le T, \\
+    \hat{H}_2(t) &= 0, &\quad T_1 = 0<t \le T/2, \\
+     &= \hat{H}_{fb}(t), &\quad T_2  = T/2<t \le T.
+\end{align}
+The presence of $\epsilon_r$ leads to imperfect spin flips, causing deviations from the ideal DTC phase and initiating DTC melting. Although the protocol aims to invert spins at each site during $T_1$, spin rotational errors hinder complete inversion, thereby destabilizing the DTC order.
+
+We compare the robustness of the DTC phase in the flat band protocol to that of the many-body localization (MBL)-induced DTC phase under finite spin rotational error, as illustrated in Fig.~\ref{fig:mbl_dtc_comparison}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=8.5cm]{figs/mbl_dtc_beat_frequency_er_50_duties.pdf}
+    \caption{Comparison of DTC phase stability between the flat band protocol and the MBL (disordered) protocol in the presence of finite spin rotational error $\epsilon_r$. Increasing $\epsilon_r$ leads to DTC melting, with the flat band protocol exhibiting reduced robustness relative to the MBL-induced DTC.}
+    \label{fig:mbl_dtc_comparison}
+\end{figure}
+Our findings reveal that the MBL-induced DTC phase exhibits superior resilience to spin rotational errors compared to the flat band protocol. This enhanced stability is attributed to the reduced sensitivity of the MBL-induced DTC phase to perturbations, whereas the flat band protocol is more susceptible to deviations arising from spin rotational errors.
+
+A salient feature of the flat band protocol is its independence from spin-spin interaction terms, which preserves symmetry under the flat band drive. However, this property also renders it more vulnerable to spin rotational errors, resulting in pronounced melting of the DTC phase. Although the protocol is designed to suppress system dynamics and induce localization, the introduction of spin rotational errors impedes complete spin flips, thereby compromising the ideal DTC order.
+
+To counteract the melting of the DTC phase in the presence of finite, albeit small, spin rotational errors, we introduce a weak symmetry-breaking interaction term to the flat band protocol. This term enables interactions among spins in the flat band and is described by
+\begin{align}
+    \hat{H}_1(t) &= \lambda_s (1-\epsilon_r) \hbar \sum_i \hat{\sigma}^x_i, &\quad T_1 = 0<t \le T/2, \\
+            &= 0, &\quad T_2 = T/2<t \le T, \\
+    \hat{H}_2(t) &= 0, &\quad T_1 = 0<t \le T/2, \\
+    \label{fb_interaction}
+    &= \hat{H}_{fb}(t) + J_{ij} \sum_{ij}^N \hat{\sigma}_i^z \hat{\sigma}_{j}^z, &\quad T_2  = T/2<t \le T,
+\end{align}
+where $J_{ij} = \frac{J_0}{\abs{i-j}^\beta}$ denotes the interaction strength between spins at sites $i$ and $j$, and $\beta = 0, \infty$ correspond to long-range (all-to-all) and nearest-neighbor interactions, respectively. \red{To ensure this term serves solely as a symmetry-breaking perturbation and does not dominate other contributions, its strength is maintained at $5\%$ of the flat band strength.} The addition of this interaction term introduces controlled symmetry breaking in the flat band protocol, thereby enhancing the stability of the DTC phase against melting induced by spin rotational errors.
+
+This approach parallels the methodology employed by Russomanno et al. in their investigation of the MBL-induced DTC phase \cite{Russomanno2017}, where a weak spin-spin interaction term was introduced:
+\begin{equation}
+    \hat{H}(h) = -\frac{2J}{N}\sum_{ij}^N \hat{S}^z_i \hat{S}^z_j -2h\sum_i^N \hat{S}^x_i,
+\end{equation}
+to stabilize the DTC phase. Our numerical analysis of the beat frequency associated with the emergent DTC phase(Russomanno et al.) reveals an exponential decay with system size, indicating its extensivity—a hallmark of the DTC phase, as shown in Fig.~\ref{fig:fft_lmg_Fazio}.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=8.5cm]{figs/fft_lmg_Fazio_0.03_tc.pdf}
+    \caption{Fourier transform of the magnetization dynamics for the flat band protocol with weak symmetry-breaking interaction and spin rotational error. The sharp peak at the subharmonic frequency signifies the persistence of the DTC phase, while the exponential decay of the beat frequency reflects DTC melting due to rotational errors.}
+    \label{fig:fft_lmg_Fazio}
+\end{figure}
+
+\noindent The introduction of the symmetry-breaking term in Eq.~\eqref{fb_interaction} is analogous to the strategy adopted by Russomanno et al. to enhance DTC robustness. We further extend our analysis to examine the stability of the DTC phase under symmetry-breaking interactions beyond nearest-neighbor and all-to-all couplings, including next-nearest-neighbor interactions. Numerical calculations of the beat frequency for these scenarios reveal that exponential decay occurs exclusively for all-to-all interactions, as illustrated below:
+\vfill
+\begin{figure}[h]
+    \centering
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=7cm]{figs/symmetry_broking_nn_0.03_FBDTC.pdf}
+        \caption{Beat frequency dynamics for the flat band protocol with weak symmetry-breaking nearest-neighbor interaction ($\beta = \infty$) and spin rotational error. The absence of exponential decay indicates limited stabilization of the DTC phase.}
+        \label{fig:symmetry_broking_nn}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=7cm]{figs/symmetry_broking_nnn_0.03_FBDTC.pdf}
+        \caption{Beat frequency dynamics for the flat band protocol with weak symmetry-breaking next-nearest-neighbor interaction and spin rotational error. The beat frequency remains non-exponential, indicating that next-nearest-neighbor interactions do not substantially enhance DTC stability.}
+        \label{fig:symmetry_broking_nnn}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=10cm]{figs/symmetry_broking_all_to_all_0.03_FBDTC.pdf}
+    \caption{Beat frequency dynamics for the flat band protocol with weak symmetry-breaking all-to-all interaction ($\beta = 0$) and spin rotational error. The exponential decay of the beat frequency demonstrates enhanced stabilization of the DTC phase against melting.}
+    \label{fig:symmetry_broking_all_to_all}
+\end{figure}
+
+\noindent The beat frequency dynamics for nearest-neighbor and next-nearest-neighbor interactions do not exhibit exponential decay, indicating that these couplings do not significantly enhance DTC stability. In contrast, all-to-all interactions yield exponential decay of the beat frequency with increasing system size, signifying robust stabilization of the DTC phase against melting induced by spin rotational errors. Thus, the stability of the DTC phase in the flat band protocol, in the presence of small spin rotational error and weak symmetry-breaking interaction, is markedly improved by all-to-all interactions. The exponential decay of the beat frequency suggests that the DTC phase remains stabilized even in the thermodynamic limit. \red{Notably, the flat band DTC (Fig.~\ref{fig:symmetry_broking_all_to_all}) exhibits fewer additional frequencies compared to Russomanno's DTC (Fig.~\ref{fig:fft_lmg_Fazio}), indicating potentially greater robustness in the flat band-DTC for larger time dynamics.}
+
+\subsection{Finte $\omega_0$'s}
+We have thus far considered $\omega_0 = 0$ in Eq.~\eqref{fig:flatband_drive_protocol}. Introducing a finite $\omega_0$ term into the flat band drive protocol, we compute the beat frequency dynamics for various values of $\omega_0$ and spin rotational error ($\epsilon_r$). Our numerical results indicate that the beat frequency remains constant across different spin chain sizes for each value of $\epsilon_r$, suggesting that the dc component does not directly influence the proposed model or its Floquet dynamics. The results are presented in Fig.~\ref{fig:beat_frequency_omega0}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=8.5cm]{figs/w0s.pdf}
+    \caption{Beat frequency dynamics for the flat band protocol with finite $\omega_0$ term.}
+    \label{fig:beat_frequency_omega0}
+\end{figure}
+
+\subsection{Robustness from flat-band protocol}
+It is also essential to assess the stability of the DTC phase induced by the flat band protocol in the presence of errors within the protocol itself. To this end, we introduce small error terms $\delta\omega_1$ and $\delta\omega_2$ into the flat band drive protocol, modifying the Hamiltonian as follows:
+\begin{align}
+    \lambda_1(t) &= \lambda_0 \;\mathrm{sgn}\left[\cos\left(n(\omega + \delta\omega_1) t\right)\right],\\
+    \lambda_2(t) &= \omega_0 - \omega_1 \;\mathrm{sgn}\left[\cos\left((2n+1)(\omega + \delta\omega_2) t\right)\right].
+\end{align}
+We numerically evaluate the Fidelity, defined as the overlap between the time-evolved state and the initial state,
+\begin{equation}
+    \mathcal{F}(t) = \abs{\braket{\psi(0)}{\psi(2nT)}}^2
+\end{equation}
+where $\ket{\psi(t)}$ is the state at time $t$ and $n = 100$. Our results show that the Fidelity remains close to unity over a broad range of $\delta\omega_2$, and is similarly high for extended values of $\delta\omega_1$, indicating that the DTC phase is robust against small errors in the flat band drive protocol. These findings are illustrated in Fig.~\ref{fig:fidelity}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=10cm]{figs/fidelity_Ns.pdf}
+    \caption{Fidelity dynamics for the flat band protocol with finite errors $\delta\omega_1$ and $\delta\omega_2$ in the flat band drive. The Fidelity remains close to unity, demonstrating the stability of the DTC phase against small errors in the drive protocol.}
+    \label{fig:fidelity}
+\end{figure}
+
+\section{Thoughts}
+While the flat band protocol-induced DTC does not match the robustness of the MBL-induced DTC in the presence of spin rotational errors, it nonetheless opens new avenues for realizing DTCs in clean driven systems. In the case of DMBL-induced time crystals, one must carefully select specific points (freezing points) in the drive parameter space to achieve localization and subharmonic response, often requiring fine-tuning of disorder and interaction strengths. This sensitivity to parameter choices can limit experimental accessibility and scalability.
+
+In contrast, the flat band DTC protocol offers greater flexibility, allowing for the manifestation of localization and DTC behavior across a wide variety of spin chains characterized by different interaction types. The protocol does not rely on disorder or many-body localization, but instead leverages engineered drive sequences to suppress dynamics and induce effective localization. This makes the flat band approach particularly attractive for experimental platforms where disorder is difficult to implement or control, such as trapped ions, superconducting qubits, or photonic systems.
+
+Moreover, the flat band protocol can be systematically modified to include weak symmetry-breaking interactions, as demonstrated above, which further enhances the stability of the DTC phase against imperfections. The observed exponential decay of the beat frequency with system size for all-to-all interactions suggests that the flat band DTC phase can remain stable even in the thermodynamic limit, a key requirement for practical applications.
+
+Overall, the flat band protocol expands the landscape of time crystal realization, offering a versatile and experimentally accessible route to robust DTC phases in clean, disorder-free systems. Future work may explore the interplay between drive engineering, interaction range, and error resilience, potentially uncovering new regimes of non-equilibrium quantum order.
 
 
 
-%\newpage
-\vspace{2cm}
-\nocite{*}
+
+
 \printbibliography{}
 \end{document}
