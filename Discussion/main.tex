@@ -1,0 +1,77 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath,physics, amssymb}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{authblk}
+\usepackage{xcolor}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\usepackage{soul, ulem, todonotes}
+%\setlength{\mathindent}{0pt}
+\usepackage[left=1.5cm, right =1.5cm, top=2cm, bottom=2cm]{geometry}
+
+\usepackage[capitalise]{cleveref}
+%\usepackage[backend=bibtex, citestyle=numeric-comp, sorting=none, url =false]{biblatex}
+\usepackage[backend=biber, style=numeric]{biblatex}
+\addbibresource[]{main.bib}  
+% Include bibliography from discussion.bib
+% The bibliography will be printed at the end using \printbibliography{}
+
+%\title{DMBL Engine}
+%\author{Soumyabroto Majumder}
+%\date{\today}
+
+% Title and author
+\title{\bf Impurity induced Discrete Time Crystal in a Flat-band system}
+\author[1,2]{Mahbub Rahaman\thanks{\texttt{mahbubrahaman@hri.res.in}}}
+\author[1]{Sayan Choudhury \thanks{\texttt{sayanchoudhury@hri.res.in}}}
+\affil[2]{\small Harish-Chandra Research Institute, A CI of Homi Bhabha National Institute, Prayagraj, Uttar Pradesh–211019, India}
+\date{}
+
+
+\begin{document}
+
+\maketitle
+%\tableofcontents
+%\newpage
+We consider a one-dimensional flat-band system with $N$ lattice sites and periodic boundary condition. The Hamiltonian of the system is given by
+\begin{equation}
+    H_{0} = -J\sum_{i=1}^{N}(\sigma_{i}^{x}\sigma_{i+1}^{x} + \sigma_{i}^{y}\sigma_{i+1}^{y}) + \frac{J}{2}\sum_{i=1}^{N}(\sigma_{i}^{x}\sigma_{i+2}^{x} + \sigma_{i}^{y}\sigma_{i+2}^{y}),
+\end{equation}
+where $J$ is the hopping amplitude and $\sigma_{i}^{x(y)}$ are the Pauli spin matrices at site $i$. The system is driven periodically by a two-step drive protocol, where the Hamiltonian of the system is given by
+\begin{equation}
+    H(t) = \begin{cases}
+    H_{0}, & 0 \leq t < T/2, \\
+    (1-\epsilon)H_{0}, & T/2 \leq t < T,
+    \end{cases}
+\end{equation}
+where $T$ is the time period of the drive and $\epsilon$ is the perturbation parameter. The Floquet operator of the system is given by
+\begin{equation}
+    U_{F} = e^{-i(1-\epsilon)H_{0}T/2}e^{-iH_{0}T/2}.
+\end{equation}
+We introduce an impurity in the system by adding a local magnetic field at site $k$,
+\begin{equation}
+    H_{imp} = h\sigma_{k}^{z},
+\end{equation}
+where $h$ is the strength of the magnetic field. The total Hamiltonian of the system is given by
+\begin{equation}
+    H_{total}(t) = H(t) + H_{imp}.
+\end{equation}
+The Floquet operator of the system with impurity is given by
+\begin{equation}
+    U_{F}^{imp} = e^{-i(1-\epsilon)(H_{0}+H_{imp})T/2}e^{-i(H_{0}+H_{imp})T/2}.
+\end{equation}
+We study the dynamics of the system by calculating the magnetization at site $k$,
+\begin{equation}    
+    M_{k}(nT) = \langle \psi(0)| (U_{F}^{imp})^{\dagger n} \sigma_{k}^{z} (U_{F}^{imp})^{n} |\psi(0)\rangle,
+\end{equation}
+where $|\psi(0)\rangle$ is the initial state of the system and $n$ is the number of drive cycles. We choose the initial state to be the ground state of $H_{0}$. We find that for certain values of $h$ and $\epsilon$, the magnetization $M_{k}(nT)$ exhibits a subharmonic response, indicating the presence of a discrete time crystal phase. We also study the stability of the DTC phase against variations in the impurity strength $h$ and the perturbation parameter $\epsilon$. Our results show that the DTC phase is robust against small variations in these parameters, indicating that the impurity-induced DTC phase is stable. We also analyze the effect of the impurity on the Floquet spectrum of the system. We find that the presence of the impurity leads to the formation of Floquet eigen  states that are localized around the impurity site. These localized Floquet states play a crucial role in stabilizing the DTC phase in the presence of the impurity. In conclusion, we have shown that the introduction of an impurity in a one-dimensional flat-band system can lead to the emergence of a discrete time crystal phase. The DTC phase is characterized by a subharmonic response in the magnetization at the impurity site and is robust against small variations in the impurity strength and perturbation parameter. The presence of localized Floquet states around the impurity site plays a crucial role in stabilizing the DTC phase. Our results provide new insights into the interplay between impurities and time-crystalline order in driven quantum systems.       
+
+
+%\newpage
+\vspace{2cm}
+\nocite{*}
+\printbibliography{}
+\end{document}
