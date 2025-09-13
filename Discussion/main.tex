@@ -18,6 +18,11 @@
 % The bibliography will be printed at the end using \printbibliography{}
 \setcounter{tocdepth}{2}
 
+% Sans modern font
+\usepackage{sansmath}
+\renewcommand{\familydefault}{\sfdefault}
+\sansmath
+
 \title{Impurity induced flat-band discrete time crystal}
 \usepackage{authblk}
 \author[1]{Mahbub Rahaman}
@@ -44,6 +49,42 @@ We consider a flat band protocol emerges from an engineered two periodic drive p
 
 Here, $\hat{\sigma}_j^{x,y,z}$ denote the Pauli matrices at site $j$, $J$ represents the Ising interaction strength, $g$ is the transverse field amplitude, and $\lambda_s$ is the strength of the second drive, chosen such that $\lambda_s \frac{T}{2} = \frac{\pi}{2}$. The time period of the primary drive is $T = 2\pi/\omega$. The system is subjected to two square pulse drives with frequencies $\omega$ and $2\omega$. The first term, $\hat{\mathcal{H}}_0(t)$, describes a periodically driven Ising interaction, while the second term, $\hat{\mathcal{H}}_1(t)$, corresponds to a periodically driven transverse field. Together, these two drives establish the flat-band protocol, which gives rise to completely localized states (CLS). The third term, $\hat{\mathcal{H}}_2(t)$, implements a spin-flip operation on all spins during the second half of each period. As a result, the system exhibits a response with a period doubling, manifesting after two time periods, eventually leading to a discrete time crystal (DTC) phase.
 
+The Floquet Hamiltonian, $\hat{\mathcal{H}}_F$, is defined via the relation $\hat{U}(T,0) = e^{-i \hat{\mathcal{H}}_F T}$, where $\hat{U}(T,0)$ denotes the time evolution operator over one period $T$. Explicitly, the Floquet Hamiltonian is given by
+\begin{align}
+    \hat{\mathcal{H}}_F = \frac{i}{T} \ln[\hat{U}(T,0)].
+\end{align}
+
+Using the Suzuki-Trotter decomposition along with Zassenhaus’ formula, the propagator can be written as
+\begin{align}
+    \hat{U}(T,0) =& \exp\left(-i \lambda_s \frac{T}{2} \sum_{j}\hat{\sigma}_j^x\right)
+    \exp\left(i g \frac{T}{4} \sum_{j}\hat{\sigma}_j^x\right)
+    \exp\left(-i g \frac{T}{4} \sum_{j}\hat{\sigma}_j^x\right)\exp\left(i J \frac{T}{2} \sum_{j} \hat{\sigma}_j^z \hat{\sigma}_{j+1}^z\right)\nonumber\\
+    &\hspace{4cm}\exp\left(i g \frac{T}{4} \sum_{j}\hat{\sigma}_j^x\right)\exp\left(-i g \frac{T}{4} \sum_{j}\hat{\sigma}_j^x\right)\exp\left(-i J \frac{T}{2} \sum_{j} \hat{\sigma}_j^z \hat{\sigma}_{j+1}^z\right).
+\end{align}
+The Floquet Hamiltonian can be computed numerically by evaluating the logarithm of the propagator. Its quasienergy spectrum is obtained by diagonalizing $\hat{\mathcal{H}}_F$.
+
+If the spin-flip operation $\hat{\mathcal{H}}_2(t)$ is neglected, the system is effectively described by the reduced Hamiltonian which is expected to host a flat band in its quasienergy spectrum. The effective Hamiltonian is given by
+\begin{align}
+    \hat{\mathcal{H}}_{\text{eff}}(t) = \hat{\mathcal{H}}_0(t) + \hat{\mathcal{H}}_1(t).
+\end{align}
+and the corresponding Floquet Hamiltonian is defined as $\hat{U}_{\text{eff}}(T,0) = e^{-i \hat{\mathcal{H}}_{\text{eff},F} T}$. The propagator for the effective Hamiltonian is given by
+
+\begin{align}
+    \hat{U}_{\text{eff}}(T,0) =& 
+    \exp\left(i g \frac{T}{4} \sum_{j}\hat{\sigma}_j^x\right)
+    \exp\left(-i g \frac{T}{4} \sum_{j}\hat{\sigma}_j^x\right)\exp\left(i J \frac{T}{2} \sum_{j} \hat{\sigma}_j^z \hat{\sigma}_{j+1}^z\right)\nonumber\\
+    &\hspace{4cm}\exp\left(i g \frac{T}{4} \sum_{j}\hat{\sigma}_j^x\right)\exp\left(-i g \frac{T}{4} \sum_{j}\hat{\sigma}_j^x\right)\exp\left(-i J \frac{T}{2} \sum_{j} \hat{\sigma}_j^z \hat{\sigma}_{j+1}^z\right).
+\end{align}
+The Floquet Hamiltonian can be computed numerically by evaluating the logarithm of the propagator. Its quasienergy spectrum is obtained by diagonalizing $\hat{\mathcal{H}}_{\text{eff},F}$. 
+Considering Suzuki-Trotter decomposition and applying  Zassenhaus’ formula, we can neglect the higher operder commutators and write the propagator as,
+\begin{align}
+    \hat{U}_{\text{eff}}(T,0) =& 
+        \exp\left(i g \frac{T}{4} \sum_{j}\hat{\sigma}_j^x\right)
+        \exp\left(-i g \frac{T}{4} \sum_{j}\hat{\sigma}_j^x\right)\exp\left(i J \frac{T}{2} \sum_{j} \hat{\sigma}_j^z \hat{\sigma}_{j+1}^z\right)\nonumber\\
+        &\hspace{4cm}\exp\left(i g \frac{T}{4} \sum_{j}\hat{\sigma}_j^x\right)\exp\left(-i g \frac{T}{4} \sum_{j}\hat{\sigma}_j^x\right)\exp\left(-i J \frac{T}{2} \sum_{j} \hat{\sigma}_j^z \hat{\sigma}_{j+1}^z\right)\nonumber\\
+        =& \mathbb{I}
+\end{align}
+This yields $\hat{\mathcal{H}}_{\text{eff},F} = 0$, indicating a completely flat quasienergy spectrum. This is supported by numerical results, as shown below.
 
 
 
