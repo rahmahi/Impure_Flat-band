@@ -63,6 +63,7 @@ Using the Suzuki-Trotter decomposition along with Zassenhaus’ formula, the pro
 \end{align}
 The Floquet Hamiltonian can be computed numerically by evaluating the logarithm of the propagator. Its quasienergy spectrum is obtained by diagonalizing $\hat{\mathcal{H}}_F$.
 
+\subsection{Flatband protocol and emergent CLS}
 If the spin-flip operation $\hat{\mathcal{H}}_2(t)$ is neglected, the system is effectively described by the reduced Hamiltonian which is expected to host a flat band in its quasienergy spectrum. The effective Hamiltonian is given by
 \begin{align}
     \hat{\mathcal{H}}_{\text{eff}}(t) = \hat{\mathcal{H}}_0(t) + \hat{\mathcal{H}}_1(t).
@@ -84,7 +85,18 @@ Considering Suzuki-Trotter decomposition and applying  Zassenhaus’ formula, we
         &\hspace{4cm}\exp\left(i g \frac{T}{4} \sum_{j}\hat{\sigma}_j^x\right)\exp\left(-i g \frac{T}{4} \sum_{j}\hat{\sigma}_j^x\right)\exp\left(-i J \frac{T}{2} \sum_{j} \hat{\sigma}_j^z \hat{\sigma}_{j+1}^z\right)\nonumber\\
         =& \mathbb{I}
 \end{align}
-This yields $\hat{\mathcal{H}}_{\text{eff},F} = 0$, indicating a completely flat quasienergy spectrum. This is supported by numerical results, as shown below.
+Consequently, we obtain $\hat{\mathcal{H}}_{\text{eff},F} = 0$, signifying that the quasienergy spectrum is entirely flat. This analytical result is corroborated by numerical simulations, as illustrated in \cref{fig:drive}.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.45\textwidth]{figs/drive.pdf}
+    \includegraphics[width=0.45\textwidth]{figs/pure_flatband.pdf}
+    \caption{Schematic depiction of the two-periodic drive protocol. The first drive, $\hat{\mathcal{H}}_0(t)$, corresponds to a square pulse with period $T$, while the second drive, $\hat{\mathcal{H}}_1(t)$, is a square pulse with period $T/2$. The third component, $\hat{\mathcal{H}}_2(t)$, implements a spin-flip operation during the latter half of each period. The right panel illustrates the quasienergy spectrum of the effective Floquet Hamiltonian(only flatband), $\hat{\mathcal{H}}_{\text{eff},F}$, which exhibits a completely flat band structure. Here, we have set $J=0.18$, $g=J/2$, and considered a system size of $L=7, 10$.}
+    \label{fig:drive}
+\end{figure}
+
+\subsection{Impurity in the flatband protocol and emergent DTC}
+
 
 
 
