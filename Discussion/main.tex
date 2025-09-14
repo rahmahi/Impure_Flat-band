@@ -19,9 +19,9 @@
 \setcounter{tocdepth}{2}
 
 % Sans modern font
-\usepackage{sansmath}
-\renewcommand{\familydefault}{\sfdefault}
-\sansmath
+%\usepackage{sansmath}
+%\renewcommand{\familydefault}{\sfdefault}
+%\sansmath
 
 \title{Impurity induced flat-band discrete time crystal}
 \usepackage{authblk}
@@ -117,11 +117,23 @@ This decay arises from the non-zero bandwidth introduced by the spin-flip operat
 \end{figure}
 
 \subsection{Flatband DTC}
-The Flatband protocol with impurity term $\hat{\mathcal{H}}_2(t)$ leads to a discrete time crystal phase characterized by period-doubled oscillations in the magnetization. However, the stability of this DTC phase is compromised by the strong spin-flip term, resulting in a gradual decay of the oscillations over time even in absence of the spin-rotational error. This necessitates further investigation into mechanisms that can stabilize the DTC order against such perturbations. 
+The flat-band protocol, combined with the impurity term $\hat{\mathcal{H}}_2(t)$, manifests a discrete time crystal (DTC) phase with period-doubled magnetization oscillations. The spin flip operation disrupts the perfect flatness of the quasienergy spectrum, leading to a non-zero bandwidth that causes dephasing and relaxation. The stability of the DTC phase is influenced by the interplay between the transverse field and Ising interaction strengths. To enhance the robustness of the DTC phase, we explore alternative spin-spin Ising interactions and transverse fields, resulting in a modified Hamiltonian:
 
-We observe that the transverse field in the flatband protocol cumulatively enhances the symmetry breaking phenomena.
 
-\todo[inline, color=yellow]{Write from here}
+\begin{align}
+    \hat{\mathcal{H}}_{\text{total}}(t) &=  \hat{\mathcal{H}}_0(t) + \hat{\mathcal{H}}_1(t)  + \hat{\mathcal{H}}_2(t), \\
+    \hat{\mathcal{H}}_0(t) &= J(t)\sum_{j} \hat{\sigma}_j^x \hat{\sigma}_{j+1}^x, \quad J(t) = J\, \mathrm{sgn}[\cos(\omega t)], \\
+    \hat{\mathcal{H}}_1(t) &= g(t)\sum_{j}\hat{\sigma}_j^z, \quad g(t) = g\, \mathrm{sgn}[\cos(2 \omega t)], \\
+    \hat{\mathcal{H}}_2(t) &=
+    \begin{cases}
+        0, & 0 < t \leq \frac{T}{2}, \\
+        \lambda_s (1- \epsilon)\sum_{j}\hat{\sigma}_j^x, & \frac{T}{2} < t \leq T,
+    \end{cases}
+\end{align}
+where the spin-flip operation is now implemented along the $x$-direction. This modification aims to avoid additional spin rotation errors and enhance the DTC phase's stability. Numerical simulations reveal that this adjusted protocol significantly improves the longevity of the period-doubled oscillations, as shown in 
 
-\printbibliography{}
+
+
+
+
 \end{document}
