@@ -1,4 +1,4 @@
-\documentclass[a4paper,10pt]{article}
+\documentclass[a4paper, 10pt]{article}
 \usepackage[left=2cm, right =2cm, top=2cm, bottom=3cm]{geometry}
 % Useful packages
 \usepackage{amsmath,physics, amssymb}
@@ -54,6 +54,7 @@ The Floquet Hamiltonian, $\hat{\mathcal{H}}_F$, is defined via the relation $\ha
 \end{align}
 
 Employing the Suzuki-Trotter decomposition and Zassenhaus’ formula, the propagator can be expressed as
+
 \begin{align}
     \hat{U}(T,0) =& \exp\left(-i \lambda_s \frac{T}{2} \sum_{j}\hat{\sigma}_j^x\right)
     \exp\left(i g \frac{T}{4} \sum_{j}\hat{\sigma}_j^x\right)
@@ -130,9 +131,28 @@ The flat-band protocol, combined with the impurity term $\hat{\mathcal{H}}_2(t)$
         \lambda_s (1- \epsilon)\sum_{j}\hat{\sigma}_j^x, & \frac{T}{2} < t \leq T,
     \end{cases}
 \end{align}
-where the spin-flip operation is now implemented along the $x$-direction. This modification aims to avoid additional spin rotation errors and enhance the DTC phase's stability. Numerical simulations reveal that this adjusted protocol significantly improves the longevity of the period-doubled oscillations, as shown in 
+where the spin-flip operation is now implemented along the $x$-direction. This modification aims to avoid additional contribution to the spin rotation errors and enhance the DTC phase's stability. 
 
+We have numerically calculated the magnetization dynamics for this modified Hamiltonian, starting from the fully polarized state $\ket{\psi(0)} = \ket{\uparrow \uparrow \uparrow \ldots \uparrow}$ and at perfect protocol, ie. zero rotational error $\epsilon = 0$. The results, shown in Fig.~\ref{figs:clean_flatband_dtc}, demonstrate more robust period-doubled oscillations with approximately zero melting rate. This indicates that the choice of interaction and transverse field directions plays a crucial role in stabilizing the DTC phase against dephasing and relaxation processes.
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[height=5cm]{figs/DTC_mag_inset_er=0.0_J=0.18_g=0.09.pdf}
+    \caption{}
+    \label{figs:clean_flatband_dtc}
+\end{figure}
+
+However, introducing a small rotational error ($\epsilon = 0.03$) in the spin-flip operation leads to a gradual decay of the DTC phase, as depicted in Fig.~\ref{figs:clean_flatband_dtc_er}. This suggests that while the modified Hamiltonian enhances the DTC phase's stability, it remains sensitive to imperfections in the driving protocol.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.45\textwidth]{figs/DTC_mag_inset_er=0.03_J=0.18_g=0.09.pdf}
+    \includegraphics[width=0.45\textwidth]{figs/DTC_mag_fft_inset_er=0.03_J=0.18_g=0.09.pdf}\\
+    \includegraphics[width=0.45\textwidth]{figs/DTC_mag_inset_er=0.03_J=1_g=1.pdf}
+    \includegraphics[width=0.45\textwidth]{figs/DTC_mag_fft_inset_er=0.03_J=1_g=1.pdf}
+    \caption{Time evolution of the magnetization for a system initialized in the fully polarized state, $\ket{\psi(0)} = \ket{\uparrow \uparrow \uparrow \ldots \uparrow}$, with a small rotational error ($\epsilon = 0.03$) in the spin-flip operation. Top panels: Moderate interaction strength ($J=0.18$, $g=J/2$) shows gradual decay of period-doubled oscillations due to the impurity term. Bottom panels: Stronger interactions ($J=1$, $g=1$) result in more rapid decay and faster loss of DTC order. The right panels display the corresponding Fourier transforms, highlighting the presence of subharmonic peaks at $\omega/2$.}
+    \label{figs:clean_flatband_dtc_er}
+\end{figure}
 
 
 
