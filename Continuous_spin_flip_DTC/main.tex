@@ -1,19 +1,20 @@
 \documentclass[a4paper, 11pt]{article}
-\usepackage[left=1in, right =1in, top=1in, bottom=1in]{geometry}
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
 % Useful packages
-\usepackage{amsmath,physics, amssymb}
+\usepackage{amsmath,physics,amssymb}
 \usepackage{graphicx}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 \usepackage{color}
 \newcommand{\blue}[1]{\textcolor{blue}{#1}}
 \newcommand{\red}[1]{\textcolor{red}{#1}}
 \usepackage{soul, ulem, todonotes}
+\usepackage{caption}
 %\usepackage{mathptmx}
 
 \usepackage[capitalise]{cleveref}
 %\usepackage[backend=bibtex, citestyle=numeric-comp, sorting=none, url =false]{biblatex}
-\usepackage[backend=biber, style=numeric]{biblatex}
-\addbibresource[]{main.bib}  
+\usepackage[backend=biber,style=numeric]{biblatex}
+\addbibresource{main.bib}
 % Include bibliography from discussion.bib
 % The bibliography will be printed at the end using \printbibliography{}
 \setcounter{tocdepth}{2}
@@ -46,7 +47,14 @@ Accordingly, the total Hamiltonian is expressed as
         \hat{\mathcal{H}}_{\text{total}}(t) =  J\sum_{j} \hat{\sigma}_j^z \hat{\sigma}_{j+1}^z + g_0\sin^2\left(\frac{\omega}{2} t\right)\sum_{j}\hat{\sigma}_j^x
     }
 \end{equation}
-where $J$ denotes the nearest-neighbor Ising interaction strength, $\hat{\sigma}_j^{x,z}$ are the Pauli matrices acting on the $j$-th spin, and $G(t)$ represents a time-dependent transverse field characterized by amplitude $g_0$ and frequency $\omega$. The amplitude $g_0$ is chosen such that $\displaystyle \int_0^T G(t)\,dt = \frac{\pi}{2}$, ensuring that the transverse field induces a spin flip over one period $T = \frac{2\pi}{\omega}$. Consequently, the system is anticipated to exhibit a subharmonic response with a period of $2T$.
+where $J$ denotes the nearest-neighbor Ising interaction strength, $\hat{\sigma}_j^{x,z}$ are the Pauli matrices acting on the $j$-th spin, and $G(t)$ represents a time-dependent transverse field characterized by amplitude $g_0$ and frequency $\omega$. 
+The drive scheme is illustrated in the figure below:
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{continuous_flip_drive.pdf}
+    \caption{Continuous spin flip drive protocol with $g_0 = \frac{\omega}{2}$. The transverse field $G(t)$ varies smoothly over time, inducing continuous spin flips.}
+\end{figure}
+The amplitude $g_0$ is chosen such that $\displaystyle \int_0^T G(t)\,dt = \frac{\pi}{2}$, ensuring that the transverse field induces a spin flip over one period $T = \frac{2\pi}{\omega}$. Consequently, the system is anticipated to exhibit a subharmonic response with a period of $2T$.
 
 Explicitly,
 \begin{align*}
@@ -56,14 +64,34 @@ Explicitly,
     &\boxed{g_0 = \frac{\omega}{2}}
 \end{align*}
  
+
+
+
 The system is initialized in a fully polarized state, with all spins aligned in the up direction: $\displaystyle\ket{\psi(0)} = \ket{\uparrow\uparrow\uparrow\ldots\uparrow}$. The time evolution is governed by the time-ordered exponential of the total Hamiltonian:
 \begin{equation}
     \ket{\psi(t)} = \mathcal{T} \exp\left(-i\int_0^t \hat{\mathcal{H}}_{\text{total}}(t')\,dt'\right) \ket{\psi(0)}.
 \end{equation}
 
-We monitor the dynamics of the system by numerically calculating the expectation value of the local magnetization along the $z$-axis at each site $j$:
+To probe the system's dynamics, we numerically compute the expectation value of the local magnetization along the $z$-axis at each site $j$:
 \begin{equation}
     m_j^z(t) = \bra{\psi(t)} \hat{\sigma}_j^z \ket{\psi(t)}.
 \end{equation}  
+In alignment with experimental studies~\cite{Zhang2017}, the Ising interaction strength is set to $J = 0.2/T$ for the primary set of results. To achieve a comprehensive understanding of the system's behavior under this driving protocol, we further explore a range of interaction strengths, $J = [0.072/T, 1, 2, 10]$. The drive frequency is chosen as $\omega = 20$, which yields $g_0 = 10$.
 
+For various interaction strengths, we numerically evaluate the magnetization dynamics and perform a Fourier transform (FFT) of the temporal magnetization data. The results are presented below.
+
+\newpage
+\subsection{$\epsilon_r = 0, J = 0.2/T, g_0 = 10, \omega = 20$}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[height = 12cm]{time_mag_epsilon_r0.00_J0.64_g10.0_allN.pdf}
+    \caption{Magnetization dynamics for $J = 0.2/T$. The system exhibits robust period-doubling behavior, indicative of discrete time crystal (DTC) order.}
+\end{figure}
+
+
+
+
+
+
+\printbibliography
 \end{document}
