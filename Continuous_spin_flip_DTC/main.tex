@@ -55,10 +55,15 @@ Explicitly,
     &g_0 \frac{\pi}{\omega} = \frac{\pi}{2}\\
     &\boxed{g_0 = \frac{\omega}{2}}
 \end{align*}
-
+ 
 The system is initialized in a fully polarized state, with all spins aligned in the up direction: $\displaystyle\ket{\psi(0)} = \ket{\uparrow\uparrow\uparrow\ldots\uparrow}$. The time evolution is governed by the time-ordered exponential of the total Hamiltonian:
 \begin{equation}
     \ket{\psi(t)} = \mathcal{T} \exp\left(-i\int_0^t \hat{\mathcal{H}}_{\text{total}}(t')\,dt'\right) \ket{\psi(0)}.
 \end{equation}
+
+We monitor the dynamics of the system by numerically calculating the expectation value of the local magnetization along the $z$-axis at each site $j$:
+\begin{equation}
+    m_j^z(t) = \bra{\psi(t)} \hat{\sigma}_j^z \ket{\psi(t)}.
+\end{equation}  
 
 \end{document}
