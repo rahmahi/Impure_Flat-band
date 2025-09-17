@@ -1,0 +1,59 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[left=2cm, right =2cm, top=2cm, bottom=3cm]{geometry}
+% Useful packages
+\usepackage{amsmath,physics, amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{color}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\usepackage{soul, ulem, todonotes}
+%\usepackage{mathptmx}
+
+\usepackage[capitalise]{cleveref}
+%\usepackage[backend=bibtex, citestyle=numeric-comp, sorting=none, url =false]{biblatex}
+\usepackage[backend=biber, style=numeric]{biblatex}
+\addbibresource[]{main.bib}  
+% Include bibliography from discussion.bib
+% The bibliography will be printed at the end using \printbibliography{}
+\setcounter{tocdepth}{2}
+
+% Sans modern font
+\usepackage{sansmath}
+\renewcommand{\familydefault}{\sfdefault}
+\sansmath
+
+\title{Discrete time crystal in continuous spin flip protocol}
+\usepackage{authblk}
+\author[1]{Mahbub Rahaman}
+\author[1]{Sayan Choudhury}
+\affil[1]{\small Harish-Chandra Research Institute, HBNI, Chhatnag Road, Jhunsi, Praygraj, UP - 211019, India}
+\date{}
+\begin{document}
+\maketitle
+%\tableofcontents
+%\newpage
+
+\section{The Model and Dynamics}
+We consider a one-dimensional chain of spin-$1/2$ particles subjected to a time-dependent Hamiltonian composed of two components:
+\begin{align}
+    \hat{\mathcal{H}}_{\text{total}}(t) &=  \hat{\mathcal{H}}_0(t) + \hat{\mathcal{H}}_1(t)  , \\
+    \hat{\mathcal{H}}_0(t) &= J\sum_{j} \hat{\sigma}_j^z \hat{\sigma}_{j+1}^z,  \\
+    \hat{\mathcal{H}}_1(t) &= G(t)\sum_{j}\hat{\sigma}_j^x, \quad G(t) = g_0\sin^2\left(\frac{\omega}{2} t\right)
+\end{align}
+Therefore the total Hamiltonian can be expressed as:
+\begin{equation}
+    \boxed{
+        \hat{\mathcal{H}}_{\text{total}}(t) =  J\sum_{j} \hat{\sigma}_j^z \hat{\sigma}_{j+1}^z + G(t)\sum_{j}\hat{\sigma}_j^x
+    }
+\end{equation}
+Here $J$ represents the strength of the nearest-neighbor Ising interaction, $\hat{\sigma}_j^{x,z}$ are the Pauli matrices acting on the $j$-th spin, and $G(t)$ is a time-dependent transverse field with amplitude $g_0$ and frequency $\omega$, such that $\displaystyle \int_0^T G(t)dt = \frac{\pi}{2}$. This ensures that the transverse field induces a spin flip over one period $T = \frac{2\pi}{\omega}$. Therefore it is expected that the system will exhibit a subharmonic response with a period of $2T$.
+
+
+
+We consider the system initialized in a state where all spins are aligned up polarized, i.e., $\ket{\psi(0)} = \ket{\uparrow\uparrow\uparrow\ldots\uparrow}$. The time evolution of the system is governed by the time-ordered exponential of the total Hamiltonian:
+\begin{equation}
+    \ket{\psi(t)} = \mathcal{T} \exp\left(-i\int_0^t \hat{\mathcal{H}}_{\text{total}}(t') dt'\right) \ket{\psi(0)}.
+\end{equation}
+
+\end{document}
