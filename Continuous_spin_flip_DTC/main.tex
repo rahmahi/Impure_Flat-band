@@ -1,5 +1,6 @@
 \documentclass[a4paper, 11pt]{article}
-\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+%\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 % Useful packages
 \usepackage{amsmath,physics,amssymb}
 \usepackage{graphicx}
@@ -10,7 +11,7 @@
 \usepackage{soul, ulem, todonotes}
 \usepackage{caption}
 %\usepackage{mathptmx}
-
+\usepackage{times}
 \usepackage[capitalise]{cleveref}
 %\usepackage[backend=bibtex, citestyle=numeric-comp, sorting=none, url =false]{biblatex}
 \usepackage[backend=biber,style=numeric]{biblatex}
@@ -22,12 +23,12 @@
 % Sans modern font
 %\usepackage{sansmath}
 %\renewcommand{\familydefault}{\sfdefault}
-%\sansmath
+%\sansmath  
 
-\title{Discrete time crystal in continuous spin flip protocol}
+\title{Emergence of Discrete Time Crystal Order in a Periodically Driven Spin-$\frac{1}{2}$ Chain}
 \usepackage{authblk}
-\author[1]{Mahbub Rahaman\thanks{\texttt{mahabubrahaman@hri.res.in}}}
-\author[1]{Sayan Choudhury\thanks{\texttt{sayanchoudhury@hri.res.in}}}
+\author[1]{Mahbub Rahaman\thanks{\textit{mahabubrahaman@hri.res.in}}}
+\author[1]{Sayan Choudhury\thanks{\textit{sayanchoudhury@hri.res.in}}}
 \affil[1]{\small Harish-Chandra Research Institute, HBNI, Chhatnag Road, Jhunsi, Praygraj, UP - 211019, India}
 \date{}
 \begin{document}
@@ -76,21 +77,87 @@ To probe the system's dynamics, we numerically compute the expectation value of 
 \begin{equation}
     m_j^z(t) = \bra{\psi(t)} \hat{\sigma}_j^z \ket{\psi(t)}.
 \end{equation}  
-In alignment with experimental studies~\cite{Zhang2017}, the Ising interaction strength is set to $J = 0.2/T$ for the primary set of results. To achieve a comprehensive understanding of the system's behavior under this driving protocol, we further explore a range of interaction strengths, $J = [0.072/T, 1, 2, 10]$. The drive frequency is chosen as $\omega = 20$, which yields $g_0 = 10$.
+In alignment with experimental reports~\cite{Zhang2017}, the Ising interaction strength is set to $J = 0.2/T$ for the primary set of results. To achieve a comprehensive understanding of the system's behavior under this driving protocol, we further explore a range of interaction strengths, $J \in [0.072/T, 1, 2, 10]$. The drive frequency is chosen as $\omega = 20$, which yields $g_0 = 10$.
 
-For various interaction strengths, we numerically evaluate the magnetization dynamics and perform a Fourier transform (FFT) of the temporal magnetization data. The results are presented below.
+For various interaction strengths, we numerically evaluate the magnetization dynamics and perform a Fourier transform (FFT) of the temporal magnetization data. The results are presented in the following pages.
 
 \newpage
 \subsection{$\epsilon_r = 0, J = 0.2/T, g_0 = 10, \omega = 20$}
 \begin{figure}[h!]
     \centering
-    \includegraphics[height = 12cm]{time_mag_epsilon_r0.00_J0.64_g10.0_allN.pdf}
-    \caption{Magnetization dynamics for $J = 0.2/T$. The system exhibits robust period-doubling behavior, indicative of discrete time crystal (DTC) order.}
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{time_mag_epsilon_r0.00_J0.64_g10.0_allN.pdf}
+        \caption*{(a) Magnetization dynamics for $J = 0.2/T$.}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{DTC_mag_fft_beat_er=0.0_J=0.6366197723675814_g=10.0.pdf}
+        \caption*{(b) FFT of magnetization showing period-doubling and fall of beat frequency with system size inverse proportionality.}
+    \end{minipage}
+    \caption{(a) Magnetization dynamics and (b) its Fourier transform for $J = 0.2/T$. The system exhibits robust period-doubling behavior, indicative of discrete time crystal (DTC) order. The FFT reveals a pronounced peak at half the driving frequency, confirming the subharmonic response characteristic of DTCs. The beat frequency diminishes with increasing system size, suggesting enhanced stability of the DTC phase in larger systems.}
 \end{figure}
 
+The figure above illustrates the magnetization dynamics and its Fourier transform for a one-dimensional spin chain subjected to a continuous spin flip drive protocol with an interaction strength of $J = 0.2/T$. The left panel (a) displays the time evolution of the local magnetization along the $z$-axis, revealing a clear period-doubling behavior. This indicates that the system's response occurs at twice the period of the driving field, a hallmark of discrete time crystal (DTC) order. The right panel (b) presents the Fast Fourier Transform (FFT) of the magnetization data, which shows a pronounced peak at half the driving frequency. This peak confirms the subharmonic response characteristic of DTCs. Additionally, the FFT analysis indicates that the beat frequency decreases as the system size increases, suggesting that the DTC phase becomes more stable in the thermodynamic limit. Overall, these results demonstrate the emergence of DTC order in the spin chain under the specified driving conditions.
 
+\newpage
+\subsection{$\epsilon_r = 0.03, J = 0.2/T, g_0 = 10, \omega = 20$}
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{time_mag_epsilon_r0.03_J0.64_g10.0_allN.pdf}
+        \caption*{(a) Magnetization dynamics for $J = 0.2/T$.}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{DTC_mag_fft_beat_er=0.03_J=0.6366197723675814_g=10.0.pdf}
+        \caption*{(b) FFT of magnetization showing period-doubling and fall of beat frequency with system size inverse proportionality.}
+    \end{minipage}
+    \caption{(a) Magnetization dynamics and (b) its Fourier transform for $J = 0.2/T$. The system exhibits robust period-doubling behavior, indicative of discrete time crystal (DTC) order. The FFT reveals a pronounced peak at half the driving frequency, confirming the subharmonic response characteristic of DTCs. The beat frequency diminishes with increasing system size, suggesting enhanced stability of the DTC phase in larger systems.}
+\end{figure}
+\newpage
+\subsection{$\epsilon_r = 0.03, J = 2, g_0 = 10, \omega = 20$}
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}[t]{0.48\textwidth} 
+        \centering
+        \includegraphics[width=\textwidth]{time_mag_epsilon_r0.03_J2.00_g10.0_allN.pdf}
+        \caption*{(a) Magnetization dynamics for $J = 2$.}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{DTC_mag_fft_beat_er=0.03_J=2_g=10.0.pdf}
+        \caption*{(b) FFT of magnetization showing period-doubling and fall of beat frequency with system size inverse proportionality.}
+    \end{minipage}
+    \caption{(a) Magnetization dynamics and (b) its Fourier transform for $J = 2$. The system exhibits robust period-doubling behavior, indicative of discrete time crystal (DTC) order. The FFT reveals a pronounced peak at half the driving frequency, confirming the    subharmonic response characteristic of DTCs. The beat frequency diminishes with increasing system size, suggesting enhanced stability of the DTC phase in larger systems.}  
 
+\end{figure}
 
+\newpage
+\subsection{$\epsilon_r = 0.03, J = 10, g_0 = 10, \omega = 20$}
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}[t]{0.48\textwidth}     
+        \centering
+        \includegraphics[width=\textwidth]{time_mag_epsilon_r0.03_J10.00_g10.0_allN.pdf}
+        \caption*{(a) Magnetization dynamics for $J = 10$.}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{DTC_mag_fft_beat_er=0.03_J=10.0_g=10.0.pdf}
+        \caption*{(b) FFT of magnetization showing period-doubling and fall of beat frequency with system size inverse proportionality.}
+    \end{minipage}
+    \caption{(a) Magnetization dynamics and (b) its Fourier transform for $J = 10$. The system exhibits robust period-doubling behavior, indicative of discrete time crystal (DTC) order. The FFT reveals a pronounced peak at half the driving frequency, confirming the subharmonic response characteristic of DTCs. The beat frequency diminishes with increasing system size, suggesting enhanced stability of the DTC phase in larger systems.}  
+\end{figure}
+
+\section{Conclusion}
+
+In summary, we have investigated the emergence of discrete time crystal (DTC) order in a one-dimensional spin-$1/2$ chain subjected to a continuous spin flip drive protocol in presence of a constant nearest-neighbor spin-spin interaction. By numerically simulating the magnetization dynamics and performing Fourier analysis, we observed robust period-doubling behavior across various interaction strengths, including $J = 0.2/T$, $J = 2$ for both in presence and absence of the rotational error in the spin flip operation. The FFT results consistently revealed pronounced peaks at half the driving frequency, confirming the subharmonic response characteristic of DTCs. Notably, the beat frequency diminished with increasing system size, indicating enhanced stability of the DTC phase in the thermodynamic limit. These findings demonstrate that continuous driving can effectively stabilize DTC order, providing new insights into non-equilibrium phases of matter and their potential applications in quantum information processing.
 
 
 \printbibliography
